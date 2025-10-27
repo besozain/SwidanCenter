@@ -1,0 +1,14 @@
+[
+  {
+    "PatientId": 1,
+    "OperationId": 3,
+    "Date": "2025-06-01",
+    "Notes": "Appendectomy performed successfully, no complications."
+  },
+  {
+    "PatientId": 2,
+    "OperationId": 3,
+    "Date": "2025-07-15",
+    "Notes": "Cesarean section completed, stable post-operation."
+  }
+]

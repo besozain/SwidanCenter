@@ -1,0 +1,103 @@
+﻿using Domain.Contracts;
+using Domain.Contracts.SpecificationContracts;
+using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using Presistence.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Presistence.Repositories
+{
+    public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
+    {
+        #region Old Repository Code
+        readonly AppDbContext _context;
+        public GenericRepository(AppDbContext context)
+        {
+            _context = context;
+        }
+
+        public async Task AddAsync(T entity)
+        {
+            await _context.Set<T>().AddAsync(entity);
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var element = await _context.Set<T>().FirstOrDefaultAsync(e => e.Id != null && e.Id.Equals(id));
+            if (element != null)
+            {
+                _context.Set<T>().Remove(element);
+            }
+        }
+
+        public async Task<IEnumerable<T>> GetAllAsync()
+        {
+            return await _context.Set<T>().ToListAsync();
+        }
+
+        public async Task<T> GetByIdAsync(int id)
+        {
+            var entity = await _context.Set<T>().FirstOrDefaultAsync(e => e.Id != null && e.Id.Equals(id));
+            if (entity == null)
+            {
+                return null!;
+            }
+            return entity;
+        }
+        public void Update(T entity)
+        {
+            _context.Set<T>().Update(entity);
+        }
+        #endregion
+
+        #region Specification ToList
+
+        public async Task<IEnumerable<T>> GetAllAsync(ISpecification<T> specification)
+        {
+            var query = _context.Set<T>().AsQueryable();
+            query = SpecificationEvaluation.ApplySpecification(query, specification);
+            return await query.ToListAsync();
+        }
+
+        public async Task<T> GetByIdAsync(ISpecification<T> specification)
+        {
+            var query = _context.Set<T>().AsQueryable();
+            query = SpecificationEvaluation.ApplySpecification(query, specification);
+            return await query.FirstOrDefaultAsync();
+        }
+
+        public async Task<int> CountAsync(ISpecification<T> specification)
+        {
+            var query = _context.Set<T>().AsQueryable();
+            query = SpecificationEvaluation.ApplySpecification(query, specification);
+            return await query.CountAsync();
+        }
+
+        public async Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await _context.Set<T>().FirstOrDefaultAsync(predicate);
+        }
+        public async Task<IReadOnlyList<T>> GetAllWithSpecAsync(ISpecification<T> spec)
+        {
+            var query = _context.Set<T>().AsQueryable();
+            query = SpecificationEvaluation.ApplySpecification(query, spec);
+            return await query.ToListAsync();
+        }
+
+        #endregion
+
+        public IQueryable<T> GetAllQueryable(ISpecification<T> spec)
+        {
+            {
+                var query = _context.Set<T>().AsQueryable();
+                query = SpecificationEvaluation.ApplySpecification(query, spec);
+                return query;
+            }
+        }
+    }
+}

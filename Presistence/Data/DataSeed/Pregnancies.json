@@ -1,0 +1,16 @@
+[
+  {
+    "PatientId": 1,
+    "LmpDate": "2025-01-01",
+    "Edd": "2025-10-01",
+    "Progress": "Ongoing",
+    "ChildGender": 1
+  },
+  {
+    "PatientId": 2,
+    "LmpDate": "2024-09-01",
+    "Edd": "2025-06-01",
+    "Progress": "Completed",
+    "ChildGender": 1
+  }
+]

@@ -1,0 +1,10 @@
+[
+  {
+    "OperationCategoryId": 1,
+    "Name": "Emergency"
+  },
+  {
+    "OperationCategoryId": 1,
+    "Name": "Planned"
+  }
+]

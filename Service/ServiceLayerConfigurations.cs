@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using Service.AutoMapperProfile;
 using Service.CoreServices;
 using ServiceAbstraction;
 using ServiceAbstraction.CoreServices;
@@ -15,6 +16,9 @@ namespace Service
         public static IServiceCollection AddServiceConfig(this IServiceCollection Services)
         {
             Services.AddScoped<IServiceManager, ServiceManager>();
+
+            Services.AddAutoMapper(typeof(PatientProfile));
+
 
             #region Core Services
 

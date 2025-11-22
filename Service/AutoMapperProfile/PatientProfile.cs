@@ -14,7 +14,7 @@ namespace Service.AutoMapperProfile
         public PatientProfile()
         {
             CreateMap<Patient,PatientDTO>().ReverseMap();
-            CreateMap<IEnumerable<Patient>, IEnumerable<PatientDTO>>().ReverseMap();
+            //CreateMap<IEnumerable<Patient>, IEnumerable<PatientDTO>>().ReverseMap();
         }
     }
 }

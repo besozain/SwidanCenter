@@ -91,10 +91,10 @@ namespace Presistence
                 patients.Add(new Patient
                 {
                     Id = Guid.NewGuid(),
-                    FirstName = dto.FirstName ?? string.Empty,
-                    LastName = dto.LastName ?? string.Empty,
+                    FullName = dto.FullName?? string.Empty,
                     Address = dto.Address ?? string.Empty,
                     Age = dto.Age,
+                    PhoneNumber = dto.PhoneNumber ?? string.Empty,
                     AbortionCount = dto.AbortionCount,
                     PregnancyCount = dto.PregnancyCount,
                     NumberOfMales = dto.NumberOfMales,
@@ -138,7 +138,7 @@ namespace Presistence
             var dtos = JsonSerializer.Deserialize<List<HusbandDto>>(json, _jsonOptions);
             if (dtos is null || dtos.Count == 0) return;
 
-            var patients = await _context.Patients.OrderBy(p => p.FirstName).ToListAsync();
+            var patients = await _context.Patients.OrderBy(p => p.FullName).ToListAsync();
             var husbands = new List<Husband>();
 
             foreach (var dto in dtos)
@@ -440,7 +440,7 @@ namespace Presistence
             var dtos = JsonSerializer.Deserialize<List<PregnancyDto>>(json, _jsonOptions);
             if (dtos is null || dtos.Count == 0) return;
 
-            var patients = await _context.Patients.OrderBy(p => p.FirstName).ToListAsync();
+            var patients = await _context.Patients.OrderBy(p => p.FullName).ToListAsync();
             var toAdd = new List<Pregnancy>();
 
             foreach (var dto in dtos)
@@ -485,7 +485,7 @@ namespace Presistence
             var dtos = JsonSerializer.Deserialize<List<MedicalExaminationDto>>(json, _jsonOptions);
             if (dtos is null || dtos.Count == 0) return;
 
-            var patients = await _context.Patients.OrderBy(p => p.FirstName).ToListAsync();
+            var patients = await _context.Patients.OrderBy(p => p.FullName).ToListAsync();
             var examTypes = await _context.ExaminationTypes.ToListAsync();
             var toAdd = new List<MedicalExamination>();
 
@@ -624,7 +624,7 @@ namespace Presistence
             var dtos = JsonSerializer.Deserialize<List<PeriodDataDto>>(json, _jsonOptions);
             if (dtos is null || dtos.Count == 0) return;
 
-            var patients = await _context.Patients.OrderBy(p => p.FirstName).ToListAsync();
+            var patients = await _context.Patients.OrderBy(p => p.FullName).ToListAsync();
             var toAdd = new List<PeriodData>();
 
             foreach (var dto in dtos)
@@ -712,7 +712,7 @@ namespace Presistence
             var dtos = JsonSerializer.Deserialize<List<PatientNotesDto>>(json, _jsonOptions);
             if (dtos is null || dtos.Count == 0) return;
 
-            var patients = await _context.Patients.OrderBy(p => p.FirstName).ToListAsync();
+            var patients = await _context.Patients.OrderBy(p => p.FullName).ToListAsync();
             var toAdd = new List<PatientNotes>();
 
             foreach (var dto in dtos)
@@ -755,7 +755,7 @@ namespace Presistence
             var dtos = JsonSerializer.Deserialize<List<PatientOperationsDto>>(json, _jsonOptions);
             if (dtos is null || dtos.Count == 0) return;
 
-            var patients = await _context.Patients.OrderBy(p => p.FirstName).ToListAsync();
+            var patients = await _context.Patients.OrderBy(p => p.FullName).ToListAsync();
             var operations = await _context.Operations.ToListAsync();
             var toAdd = new List<PatientOperations>();
 
@@ -801,7 +801,7 @@ namespace Presistence
             var dtos = JsonSerializer.Deserialize<List<PatientMedicationCourseDto>>(json, _jsonOptions);
             if (dtos is null || dtos.Count == 0) return;
 
-            var patients = await _context.Patients.OrderBy(p => p.FirstName).ToListAsync();
+            var patients = await _context.Patients.OrderBy(p => p.FullName).ToListAsync();
             var drugs = await _context.Drugs.ToListAsync();
             var toAdd = new List<PatientMedicationCourse>();
 
@@ -847,7 +847,7 @@ namespace Presistence
             var dtos = JsonSerializer.Deserialize<List<TestResultDto>>(json, _jsonOptions);
             if (dtos is null || dtos.Count == 0) return;
 
-            var patients = await _context.Patients.OrderBy(p => p.FirstName).ToListAsync();
+            var patients = await _context.Patients.OrderBy(p => p.FullName).ToListAsync();
             var testTypes = await _context.TestTypes.ToListAsync();
             var toAdd = new List<TestResult>();
 
@@ -884,10 +884,10 @@ namespace Presistence
         #region DTOs
         private class PatientDto
         {
-            public string? FirstName { get; set; }
-            public string? LastName { get; set; }
+            public string? FullName { get; set; }
             public string? Address { get; set; }
             public int Age { get; set; }
+            public string PhoneNumber { get; set; }
             public int AbortionCount { get; set; }
             public int PregnancyCount { get; set; }
             public int NumberOfMales { get; set; }

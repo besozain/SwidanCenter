@@ -301,10 +301,10 @@ namespace Presistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("FullName")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<bool?>("HasBloodPressure")
                         .HasColumnType("bit");
@@ -323,11 +323,6 @@ namespace Presistence.Migrations
 
                     b.Property<int?>("LastBirthType")
                         .HasColumnType("int");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("LastPeriodDate")
                         .HasColumnType("datetime2");
@@ -360,7 +355,7 @@ namespace Presistence.Migrations
 
                     b.HasIndex("Age");
 
-                    b.HasIndex("LastName", "FirstName");
+                    b.HasIndex("FullName");
 
                     b.ToTable("Patients", (string)null);
                 });

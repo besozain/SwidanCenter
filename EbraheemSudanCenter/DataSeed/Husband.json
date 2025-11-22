@@ -1,0 +1,14 @@
+[
+  {
+    "Name": "Ahmed Youssef",
+    "Age": 33,
+    "IsSmoking": false,
+    "IsDiabetic": false,
+  },
+  {
+    "Name": "Omar Nabil",
+    "Age": 36,
+    "IsSmoking": true,
+    "IsDiabetic": false,
+  }
+]

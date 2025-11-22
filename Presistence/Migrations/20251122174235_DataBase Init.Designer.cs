@@ -12,8 +12,8 @@ using Presistence.Data;
 namespace Presistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251110192740_SP of Dashboard")]
-    partial class SPofDashboard
+    [Migration("20251122174235_DataBase Init")]
+    partial class DataBaseInit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -304,10 +304,10 @@ namespace Presistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("FullName")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<bool?>("HasBloodPressure")
                         .HasColumnType("bit");
@@ -327,11 +327,6 @@ namespace Presistence.Migrations
                     b.Property<int?>("LastBirthType")
                         .HasColumnType("int");
 
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<DateTime?>("LastPeriodDate")
                         .HasColumnType("datetime2");
 
@@ -348,6 +343,10 @@ namespace Presistence.Migrations
                     b.Property<int>("NumberOfMales")
                         .HasColumnType("int");
 
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("PregnancyCount")
                         .HasColumnType("int");
 
@@ -359,7 +358,7 @@ namespace Presistence.Migrations
 
                     b.HasIndex("Age");
 
-                    b.HasIndex("LastName", "FirstName");
+                    b.HasIndex("FullName");
 
                     b.ToTable("Patients", (string)null);
                 });

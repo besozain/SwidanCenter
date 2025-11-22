@@ -17,7 +17,7 @@ namespace Presentation.Controllers
     public class PatientController(IServiceManager serviceManager) : ControllerBase
     {
         [HttpGet("GetPatients")]
-        public async Task<ActionResult<IEnumerable<PatientDTO>>> GetPatients(PatientQueryData patientQueryData)
+        public async Task<ActionResult<IEnumerable<PatientDTO>>> GetPatients([FromQuery] PatientQueryData patientQueryData)
         {
             var patients = await serviceManager.PatientService.GetPatientsAsync(patientQueryData);
             return Ok(patients);

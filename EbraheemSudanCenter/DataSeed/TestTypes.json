@@ -1,0 +1,10 @@
+[
+  {
+    "TestCategoryId": 1,
+    "Name": "Hemoglobin"
+  },
+  {
+    "TestCategoryId": 2,
+    "Name": "Urine Protein"
+  }
+]

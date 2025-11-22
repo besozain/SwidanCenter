@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Presistence.Migrations
 {
     /// <inheritdoc />
-    public partial class InitDatabase : Migration
+    public partial class DataBaseInit : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -62,8 +62,8 @@ namespace Presistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWSEQUENTIALID()"),
-                    FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    FullName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
                     AbortionCount = table.Column<int>(type: "int", nullable: false),
@@ -531,9 +531,9 @@ namespace Presistence.Migrations
                 column: "Age");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Patients_LastName_FirstName",
+                name: "IX_Patients_FullName",
                 table: "Patients",
-                columns: new[] { "LastName", "FirstName" });
+                column: "FullName");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PeriodData_PatientId_Date",

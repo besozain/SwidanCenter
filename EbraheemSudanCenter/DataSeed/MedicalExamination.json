@@ -1,0 +1,12 @@
+[
+  {
+    "ExaminationTypeId": 1,
+    "Date": "2025-02-20",
+    "Complain": "Routine checkup"
+  },
+  {
+    "ExaminationTypeId": 2,
+    "Date": "2025-03-15",
+    "Complain": "Abdominal pain"
+  }
+]

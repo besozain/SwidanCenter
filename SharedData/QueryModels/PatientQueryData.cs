@@ -11,8 +11,8 @@ namespace SharedData.QueryModels
         private int? _take;
         private int? _pageIndex;
 
-        public string? NameorPhoneNumber;
-        public DateOnly? date;
+        public string? NameorPhoneNumber { get; set; }
+        public DateOnly? date { get; set; }
 
         public int? Take
         {

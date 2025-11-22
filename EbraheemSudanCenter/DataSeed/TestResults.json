@@ -1,0 +1,12 @@
+[
+  {
+    "TestTypeId": 1,
+    "Result": "Normal",
+    "Date": "2025-03-05"
+  },
+  {
+    "TestTypeId": 2,
+    "Result": "Slightly high glucose",
+    "Date": "2025-04-12"
+  }
+]

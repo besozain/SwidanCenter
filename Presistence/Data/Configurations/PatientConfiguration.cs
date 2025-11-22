@@ -16,15 +16,14 @@ namespace Presistence.Data.Configurations
             // ---------- Columns ----------
             e.ToTable("Patients");
 
-            e.Property(x => x.FirstName).HasMaxLength(100).IsRequired();
-            e.Property(x => x.LastName).HasMaxLength(100).IsRequired();
+            e.Property(x => x.FullName).HasMaxLength(200).IsRequired();
             e.Property(x => x.Address).HasMaxLength(256).IsRequired();
 
             e.Property(x => x.MedicalHistoryStory).HasMaxLength(4000);
             e.Property(x => x.SurgeryHistoryStory).HasMaxLength(4000);
 
             // فهارس مفيدة للاستعلام
-            e.HasIndex(x => new { x.LastName, x.FirstName });
+            e.HasIndex(x => new { x.FullName });
             e.HasIndex(x => x.Age);
 
             // ---------- One-to-Many ----------

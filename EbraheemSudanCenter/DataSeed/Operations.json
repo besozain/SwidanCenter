@@ -1,0 +1,10 @@
+[
+  {
+    "OperationTypeId": 1,
+    "OperationCategoryId": 1
+  },
+  {
+    "OperationTypeId": 2,
+    "OperationCategoryId": 2
+  }
+]

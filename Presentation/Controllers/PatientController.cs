@@ -22,6 +22,13 @@ namespace Presentation.Controllers
             var patients = await serviceManager.PatientService.GetPatientsAsync(patientQueryData);
             return Ok(patients);
         }
+
+        [HttpGet("PatientsCount")]
+        public async Task<ActionResult<int>> GetPatientsCount()
+        {
+            var Count = await serviceManager.PatientService.GetPatientsCountAsync();
+            return Ok(Count);
+        }
     }
 
 }

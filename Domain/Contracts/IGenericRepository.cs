@@ -17,6 +17,7 @@ namespace Domain.Contracts
         Task AddAsync(T entity);
         void Update(T entity);
         Task DeleteAsync(int id);
+        Task<int> CountAsync();
         #endregion
 
         #region Specification Methods

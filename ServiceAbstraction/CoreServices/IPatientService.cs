@@ -13,5 +13,6 @@ namespace ServiceAbstraction.CoreServices
     public interface IPatientService
     {
         public Task<IEnumerable<PatientDTO>> GetPatientsAsync(PatientQueryData patientQueryData);
+        public Task<int> GetPatientsCountAsync();
     }
 }

@@ -23,5 +23,11 @@ namespace Service.CoreServices
             var patients = await Repo.GetAllWithSpecAsync(spec);
             return mapper.Map<IEnumerable<PatientDTO>>(patients);
         }
+        public async Task<int> GetPatientsCountAsync()
+        {
+            var Repo = unitOfWork.GetRepository<Patient, Guid>();
+            var count = await Repo.CountAsync();
+            return count;
+        }
     }
 }

@@ -53,6 +53,11 @@ namespace Presistence.Repositories
         {
             _context.Set<T>().Update(entity);
         }
+
+        public async Task<int> CountAsync()
+        {
+           return await _context.Set<T>().CountAsync();
+        }
         #endregion
 
         #region Specification ToList

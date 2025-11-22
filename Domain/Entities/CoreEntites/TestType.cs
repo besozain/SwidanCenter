@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities.CoreEntites
 {
-    public class TestType : BaseEntity
+    public class TestType : BaseEntity<int>
     {
         public string Name { get; set; } = default!;
 

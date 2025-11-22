@@ -23,6 +23,9 @@ namespace Presistence.Data.Configurations
              .WithMany(p => p.SecondThirdTrimesterExams)
              .HasForeignKey(x => x.PregnancyId)
              .OnDelete(DeleteBehavior.Cascade);
+
+            e.Property(p => p.Id)
+             .HasDefaultValueSql("NEWSEQUENTIALID()");
         }
     }
 }

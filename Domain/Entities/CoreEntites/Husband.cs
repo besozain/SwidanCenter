@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities.CoreEntites
 {
-    public class Husband : BaseEntity
+    public class Husband : BaseEntity<int>
     {
         public string? Name { get; set; }
         public int? Age { get; set; }
@@ -15,7 +15,7 @@ namespace Domain.Entities.CoreEntites
         public bool? IsDiabetic { get; set; }
 
         [ForeignKey("Patient")]
-        public int PatientId { get; set; }
+        public Guid PatientId { get; set; }
         public Patient Patient { get; set; } = default!;
     }
 }

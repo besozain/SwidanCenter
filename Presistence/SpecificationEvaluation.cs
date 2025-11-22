@@ -11,7 +11,7 @@ namespace Presistence
 {
     static public class SpecificationEvaluation
     {
-        static public IQueryable<T> ApplySpecification<T>(this IQueryable<T> query, ISpecification<T> specification) where T : BaseEntity
+        static public IQueryable<T> ApplySpecification<T, TKey>(this IQueryable<T> query, ISpecification<T, TKey> specification) where T : BaseEntity<TKey>
         {
 
             if (specification.Criteria != null)

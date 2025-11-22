@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities.CoreEntites
 {
-    public class Patient : BaseEntity
+    public class Patient : BaseEntity<Guid>
     {
         // Identity
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-
-        // Demographics
+        public string FullName { get; set; }
+        public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public int Age { get; set; }
+
+        // Demographics
         public int AbortionCount { get; set; }
         public int PregnancyCount { get; set; }
         public int NumberOfMales { get; set; }

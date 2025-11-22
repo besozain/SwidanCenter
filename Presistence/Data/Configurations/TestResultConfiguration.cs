@@ -27,6 +27,9 @@ namespace Presistence.Data.Configurations
              .WithMany(t => t.Results)
              .HasForeignKey(x => x.TestTypeId)
              .OnDelete(DeleteBehavior.Restrict);
+
+            e.Property(p => p.Id)
+             .HasDefaultValueSql("NEWSEQUENTIALID()");
         }
     }
 }

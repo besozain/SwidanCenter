@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities.CoreEntites
 {
-    public class FirstTrimesterExam : BaseEntity
+    public class FirstTrimesterExam : BaseEntity<Guid>
     {
-        public int PregnancyId { get; set; }
+        public Guid PregnancyId { get; set; }
         public Pregnancy Pregnancy { get; set; } = default!;
 
         public DateTime Date { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities.CoreEntites
 {
-    public class ExaminationType : BaseEntity
+    public class ExaminationType : BaseEntity<int>
     {
         public string Name { get; set; } = default!;
         public List<MedicalExamination> Examinations { get; set; } = new();

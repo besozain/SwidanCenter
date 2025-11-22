@@ -1,10 +1,12 @@
-﻿using ServiceAbstraction;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using Service.CoreServices;
+using ServiceAbstraction;
+using ServiceAbstraction.CoreServices;
 
 namespace Service
 {
@@ -14,6 +16,15 @@ namespace Service
         {
             Services.AddScoped<IServiceManager, ServiceManager>();
 
+            #region Core Services
+
+            Services.AddScoped<IPatientService, PatientServices>();
+            Services.AddScoped<Func<IPatientService>>(x => () => x.GetRequiredService<IPatientService>());
+
+            Services.AddScoped<IStatsServices, StatsServices>();
+            Services.AddScoped<Func<IStatsServices>>(x => () => x.GetRequiredService<IStatsServices>());
+
+            #endregion
             return Services;
         }
     }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Service.Specification_Implementation
 {
-    public abstract class Specification<T> : ISpecification<T> where T : BaseEntity
+    public abstract class Specification<T,TKey> : ISpecification<T,TKey> where T : BaseEntity<TKey>
     {
         #region Includes
         public Expression<Func<T, bool>> Criteria { get; private set; }

@@ -9,19 +9,23 @@ using System.Threading.Tasks;
 
 namespace Domain.Contracts
 {
-    public interface IGenericRepository<T> where T : BaseEntity
+    public interface IGenericRepository<T, TKey> where T : BaseEntity<TKey>
     {
+        #region Normal Methods
         Task<IEnumerable<T>> GetAllAsync();
         Task<T> GetByIdAsync(int id);
         Task AddAsync(T entity);
         void Update(T entity);
         Task DeleteAsync(int id);
-        Task<IEnumerable<T>> GetAllAsync(ISpecification<T> specification);
-        Task<T> GetByIdAsync(ISpecification<T> specification);
-        Task<int> CountAsync(ISpecification<T> specification);
-        Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> predicate);
-        Task<IReadOnlyList<T>> GetAllWithSpecAsync(ISpecification<T> spec);
+        #endregion
 
-        public IQueryable<T> GetAllQueryable(ISpecification<T> spec);
+        #region Specification Methods
+        Task<IEnumerable<T>> GetAllAsync(ISpecification<T , TKey> specification);
+        Task<T> GetByIdAsync(ISpecification<T, TKey> specification);
+        Task<int> CountAsync(ISpecification<T, TKey> specification);
+        Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> predicate);
+        Task<IReadOnlyList<T>> GetAllWithSpecAsync(ISpecification<T, TKey> spec);
+        public IQueryable<T> GetAllQueryable(ISpecification<T, TKey> spec);
+        #endregion
     }
 }

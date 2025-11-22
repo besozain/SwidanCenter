@@ -13,11 +13,14 @@ namespace Presistence.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Pregnancy> e)
         {
-            e.HasIndex(x => new { x.PatientId, x.CreatedAt });
+            e.HasIndex(x => new { x.PatientId, x.ModifiedAt });
             e.HasOne(x => x.Patient)
              .WithMany(p => p.Pregnancies)
              .HasForeignKey(x => x.PatientId)
              .OnDelete(DeleteBehavior.Cascade);
+
+            e.Property(p => p.Id)
+             .HasDefaultValueSql("NEWSEQUENTIALID()");
         }
     }
 }

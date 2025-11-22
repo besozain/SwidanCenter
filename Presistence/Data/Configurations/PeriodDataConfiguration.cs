@@ -18,6 +18,9 @@ namespace Presistence.Data.Configurations
              .WithMany(p => p.PeriodDataRecords)
              .HasForeignKey(x => x.PatientId)
              .OnDelete(DeleteBehavior.Cascade);
+
+            e.Property(p => p.Id)
+             .HasDefaultValueSql("NEWSEQUENTIALID()");
         }
     }
 }

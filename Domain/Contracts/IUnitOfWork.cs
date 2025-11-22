@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Contracts
 {
-   public interface IUnitOfWork
+    public interface IUnitOfWork
     {
-        IGenericRepository<T> GetRepository<T>() where T : BaseEntity;
-
+        IGenericRepository<T, TKey> GetRepository<T, TKey>() where T : BaseEntity<TKey>;
         public Task<int> SaveChangesAsync();
     }
 }

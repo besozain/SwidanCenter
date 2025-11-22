@@ -33,6 +33,9 @@ namespace Presistence.Data.Configurations
              .WithMany(d => d.PatientMedicationCourses) // ⬅️ محتاج تضيفها في Drug
              .HasForeignKey(x => x.DrugId)
              .OnDelete(DeleteBehavior.Restrict);
+
+            e.Property(p => p.Id)
+             .HasDefaultValueSql("NEWSEQUENTIALID()");
         }
     }
 }

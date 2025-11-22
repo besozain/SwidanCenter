@@ -1,11 +1,9 @@
 [
   {
-    "PatientId": 1,
     "Notes": "Mild headaches reported",
     "Date": "2025-03-12"
   },
   {
-    "PatientId": 2,
     "Notes": "Improved after medication",
     "Date": "2025-03-20"
   }

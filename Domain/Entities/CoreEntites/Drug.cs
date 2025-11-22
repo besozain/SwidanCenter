@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities.CoreEntites
 {
-    public class Drug : BaseEntity
+    public class Drug : BaseEntity<int>
     {
         public string Name { get; set; } = default!;
         public string Description { get; set; } = default!;

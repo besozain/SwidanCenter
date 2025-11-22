@@ -23,6 +23,8 @@ namespace Presistence
                     ));
             Services.AddScoped<IUnitOfWork, UnitOfWork>();
             Services.AddScoped<IDataSeeding, DataSeeding>();
+            Services.AddScoped<INewDataSeeding, NewDataSeeding>();
+            Services.AddScoped<IRawSqlExecutor, RawSqlExecutor>();
             return Services;
         }
     }

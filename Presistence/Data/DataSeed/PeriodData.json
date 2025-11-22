@@ -1,12 +1,10 @@
 [
   {
-    "PatientId": 1,
     "LastPeriodDate": "2024-12-01",
     "Date": "2024-12-01",
     "Notes": "Regular cycle, 28 days"
   },
   {
-    "PatientId": 2,
     "LastPeriodDate": "2025-01-10",
     "Date": "2025-01-10",
     "Notes": "Cycle 30 days"

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Contracts.SpecificationContracts
 {
-    public interface ISpecification<T> where T : BaseEntity
+    public interface ISpecification<T,TKey> where T : BaseEntity<TKey>
     {
         public Expression<Func<T, bool>> Criteria { get; }
         public List<Expression<Func<T, object>>> Includes { get; }

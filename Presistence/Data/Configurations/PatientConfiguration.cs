@@ -87,12 +87,13 @@ namespace Presistence.Data.Configurations
                 }
              );
 
-          
-
             e.HasMany(p => p.TestResults)
              .WithOne(tr => tr.Patient)
              .HasForeignKey(tr => tr.PatientId)
              .OnDelete(DeleteBehavior.Cascade);
+
+            e.Property(p => p.Id)
+             .HasDefaultValueSql("NEWSEQUENTIALID()");
         }
     }
 }

@@ -26,7 +26,10 @@ namespace Presistence.Data.Configurations
             e.HasOne(x => x.Operation)
              .WithMany(o => o.PatientOperations)    
              .HasForeignKey(x => x.OperationId)
-             .OnDelete(DeleteBehavior.Restrict);    
+             .OnDelete(DeleteBehavior.Restrict);
+
+            e.Property(p => p.Id)
+             .HasDefaultValueSql("NEWSEQUENTIALID()");
         }
     }
 }

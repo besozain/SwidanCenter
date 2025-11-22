@@ -1,11 +1,12 @@
-﻿using Domain.Entities.CoreEntites;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.Entities.CoreEntites;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Presistence.Data.Configurations
 {
@@ -22,6 +23,9 @@ namespace Presistence.Data.Configurations
              .WithMany(p => p.FirstTrimesterExams)
              .HasForeignKey(x => x.PregnancyId)
              .OnDelete(DeleteBehavior.Cascade);
+
+            e.Property(p => p.Id)
+             .HasDefaultValueSql("NEWSEQUENTIALID()"); 
         }
     }
 }

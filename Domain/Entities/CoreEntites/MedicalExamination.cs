@@ -1,11 +1,11 @@
 ﻿namespace Domain.Entities.CoreEntites
 {
-    public class MedicalExamination : BaseEntity
+    public class MedicalExamination : BaseEntity<Guid>
     {
         public DateTime Date { get; set; }
         public string Complain { get; set; }
 
-        public int PatientId { get; set; }
+        public Guid PatientId { get; set; }
         public Patient Patient { get; set; } = default!;
 
         public int ExaminationTypeId { get; set; }

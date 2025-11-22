@@ -4,13 +4,11 @@
     "Age": 33,
     "IsSmoking": false,
     "IsDiabetic": false,
-    "PatientId": 1
   },
   {
     "Name": "Omar Nabil",
     "Age": 36,
     "IsSmoking": true,
     "IsDiabetic": false,
-    "PatientId": 2
   }
 ]

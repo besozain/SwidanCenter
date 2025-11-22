@@ -1,11 +1,11 @@
 ﻿namespace Domain.Entities.CoreEntites
 {
-    public class TestResult : BaseEntity
+    public class TestResult : BaseEntity<Guid>
     {
         public DateTime Date { get; set; }
         public string Result { get; set; } = default!;
 
-        public int PatientId { get; set; }
+        public Guid PatientId { get; set; }
         public Patient Patient { get; set; } = default!;
 
         public int TestTypeId { get; set; }

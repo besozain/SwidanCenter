@@ -1,6 +1,5 @@
 [
   {
-    "PregnancyId": 1,
     "Date": "2025-03-10",
     "Week": 9,
     "CRL": 24.5,
@@ -8,7 +7,6 @@
     "Notes": "FHR detected, normal development observed."
   },
   {
-    "PregnancyId": 2,
     "Date": "2025-04-02",
     "Week": 11,
     "CRL": 41.8,

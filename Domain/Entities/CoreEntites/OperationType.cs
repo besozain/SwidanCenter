@@ -2,7 +2,7 @@
 
 namespace Domain.Entities.CoreEntites
 {
-    public class OperationType : BaseEntity
+    public class OperationType : BaseEntity<int>
     {
         public string Name { get; set; } = default!;
         [ForeignKey("OperationCategory")]

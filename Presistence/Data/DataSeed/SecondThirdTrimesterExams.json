@@ -1,6 +1,5 @@
 ﻿[
   {
-    "PregnancyId": 1,
     "Date": "2025-06-15",
     "Week": 24,
     "FL": 42.5,
@@ -9,7 +8,6 @@
     "Notes": "Normal growth, healthy amniotic fluid level."
   },
   {
-    "PregnancyId": 2,
     "Date": "2025-05-28",
     "Week": 30,
     "FL": 56.2,

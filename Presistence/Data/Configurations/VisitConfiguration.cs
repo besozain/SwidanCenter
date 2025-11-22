@@ -22,6 +22,9 @@ namespace Presistence.Data.Configurations
              .WithMany(me => me.Visits)          
              .HasForeignKey(x => x.MedicalExaminationId)
              .OnDelete(DeleteBehavior.Cascade);
+
+            e.Property(p => p.Id)
+             .HasDefaultValueSql("NEWSEQUENTIALID()");
         }
     }
 }

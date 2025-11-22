@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities.CoreEntites
 {
-    public class TestCategory : BaseEntity
+    public class TestCategory : BaseEntity<int>
     {
         public string Name { get; set; } = default!;
         public List<TestType> TestTypes { get; set; } = new();

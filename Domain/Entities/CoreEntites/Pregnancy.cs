@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities.CoreEntites
 {
-    public class Pregnancy : BaseEntity
+    public class Pregnancy : BaseEntity<Guid>
     {
         public ChildGender? ChildGender { get; set; }
 
@@ -16,7 +16,7 @@ namespace Domain.Entities.CoreEntites
         public List<FirstTrimesterExam> FirstTrimesterExams { get; set; } = new();
         public List<SecondThirdTrimesterExam> SecondThirdTrimesterExams { get; set; } = new();
         [ForeignKey("Patient")]
-        public int PatientId { get; set; }
+        public Guid PatientId { get; set; }
         public Patient Patient { get; set; } = default!;
     }
 }

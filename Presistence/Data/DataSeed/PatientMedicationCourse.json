@@ -1,13 +1,11 @@
 [
   {
     "DrugId": 1,
-    "PatientId": 1,
     "StartDate": "2025-04-01",
     "EndDate": "2025-04-15"
   },
   {
     "DrugId": 2,
-    "PatientId": 2,
     "StartDate": "2025-05-10",
     "EndDate": "2025-05-25"
   }

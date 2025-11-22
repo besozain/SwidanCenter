@@ -4,14 +4,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities.CoreEntites
 {
-    public class PatientNotes : BaseEntity
+    public class PatientNotes : BaseEntity<Guid>
     {
         
         public string Notes { get; set; } = string.Empty;
         public DateTime Date { get; set; }
 
         [ForeignKey("Patient")]
-        public int PatientId { get; set; }
+        public Guid PatientId { get; set; }
         public Patient Patient { get; set; } = default!;
     }
 }

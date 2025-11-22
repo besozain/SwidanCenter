@@ -12,14 +12,14 @@ using System.Threading.Tasks;
 
 namespace Presistence.Repositories
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
+    public class GenericRepository<T, TKey> : IGenericRepository<T, TKey> where T : BaseEntity<TKey>
     {
-        #region Old Repository Code
         readonly AppDbContext _context;
         public GenericRepository(AppDbContext context)
         {
             _context = context;
         }
+        #region Old Repository Code
 
         public async Task AddAsync(T entity)
         {
@@ -57,21 +57,21 @@ namespace Presistence.Repositories
 
         #region Specification ToList
 
-        public async Task<IEnumerable<T>> GetAllAsync(ISpecification<T> specification)
+        public async Task<IEnumerable<T>> GetAllAsync(ISpecification<T, TKey> specification)
         {
             var query = _context.Set<T>().AsQueryable();
             query = SpecificationEvaluation.ApplySpecification(query, specification);
             return await query.ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(ISpecification<T> specification)
+        public async Task<T> GetByIdAsync(ISpecification<T, TKey> specification)
         {
             var query = _context.Set<T>().AsQueryable();
             query = SpecificationEvaluation.ApplySpecification(query, specification);
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task<int> CountAsync(ISpecification<T> specification)
+        public async Task<int> CountAsync(ISpecification<T, TKey> specification)
         {
             var query = _context.Set<T>().AsQueryable();
             query = SpecificationEvaluation.ApplySpecification(query, specification);
@@ -82,7 +82,7 @@ namespace Presistence.Repositories
         {
             return await _context.Set<T>().FirstOrDefaultAsync(predicate);
         }
-        public async Task<IReadOnlyList<T>> GetAllWithSpecAsync(ISpecification<T> spec)
+        public async Task<IReadOnlyList<T>> GetAllWithSpecAsync(ISpecification<T, TKey> spec)
         {
             var query = _context.Set<T>().AsQueryable();
             query = SpecificationEvaluation.ApplySpecification(query, spec);
@@ -91,7 +91,7 @@ namespace Presistence.Repositories
 
         #endregion
 
-        public IQueryable<T> GetAllQueryable(ISpecification<T> spec)
+        public IQueryable<T> GetAllQueryable(ISpecification<T, TKey> spec)
         {
             {
                 var query = _context.Set<T>().AsQueryable();

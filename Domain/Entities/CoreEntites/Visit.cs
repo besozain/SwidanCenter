@@ -2,12 +2,12 @@
 
 namespace Domain.Entities.CoreEntites
 {
-    public class Visit : BaseEntity
+    public class Visit : BaseEntity<Guid>
     {
         public DateTime Date { get; set; }
 
         [ForeignKey("MedicalExamination")]
-        public int MedicalExaminationId { get; set; }
+        public Guid MedicalExaminationId { get; set; }
         public MedicalExamination MedicalExamination { get; set; } = default!;
     }
 }

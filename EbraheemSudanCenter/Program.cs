@@ -1,10 +1,13 @@
 
+using System;
 using Domain.Contracts;
+using EbraheemSudanCenter.CustomMiddleWares;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Presistence;
 using Presistence.Data;
+using RideFix.CustomMiddlewares;
 using Service;
-using System;
 
 namespace EbraheemSudanCenter
 {
@@ -26,10 +29,31 @@ namespace EbraheemSudanCenter
 
             #region Services Configurations
             builder.Services.AddPresistenceConfig(builder.Configuration); // Custom extension method to add persistence layer configurations
-           // builder.Services.AddServiceConfig();// Custom extension method to add service layer configurations
+                                                                          // builder.Services.AddServiceConfig();// Custom extension method to add service layer configurations
             #endregion
 
+            #region Invalid Model State Response Factory Configuration
 
+            builder.Services.Configure<ApiBehaviorOptions>(ApiBehaviorOptions =>
+            {
+                ApiBehaviorOptions.InvalidModelStateResponseFactory = context =>
+                {
+                    var errors = context.ModelState
+                        .Where(e => e.Value.Errors.Count > 0)
+                        .Select(e => new RideFix.ErrorModels.ValidationError
+                        {
+                            Key = e.Key,
+                            Errors = e.Value.Errors.Select(x => x.ErrorMessage).ToArray()
+                        }).ToArray();
+                    var Error = new RideFix.ErrorModels.ValidationErrorToReturn
+                    {
+                        Errors = errors,
+                    };
+                    return new BadRequestObjectResult(Error);
+                };
+            });
+
+            #endregion
 
             var app = builder.Build();
 
@@ -42,13 +66,20 @@ namespace EbraheemSudanCenter
 
             app.UseAuthorization();
 
+            app.UseMiddleware<ApiResponseMiddleware>();
+
+            #region Exception Handler Middleware Configuration
+            app.UseMiddleware<CustomExceptionMiddleware>();
+            #endregion
+
             #region Data Seeding Configuration
             using (var scope = app.Services.CreateScope())
             {
-                var dataSeeding = scope.ServiceProvider.GetRequiredService<IDataSeeding>();
+                var dataSeeding = scope.ServiceProvider.GetRequiredService<INewDataSeeding>();
                 await dataSeeding.SeedAllAsync();
             }
             #endregion
+
             app.MapControllers();
 
             app.Run();

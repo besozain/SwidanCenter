@@ -23,13 +23,13 @@ namespace Presistence.unitOfWork
         }
 
 
-        public IGenericRepository<T> GetRepository<T>() where T : BaseEntity
+        public IGenericRepository<T, TKey> GetRepository<T, TKey>() where T : BaseEntity<TKey>
         {
             if (_repositories.ContainsKey(typeof(T).Name))
             {
-                return (IGenericRepository<T>)_repositories[typeof(T).Name];
+                return (IGenericRepository<T, TKey>)_repositories[typeof(T).Name];
             }
-            var repository = new GenericRepository<T>(_context);
+            var repository = new GenericRepository<T, TKey>(_context);
             _repositories.Add(typeof(T).Name, repository);
             return repository;
         }

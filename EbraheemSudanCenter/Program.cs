@@ -55,6 +55,20 @@ namespace EbraheemSudanCenter
 
             #endregion
 
+            #region CORS Configuration
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAngularClient",
+                    policy =>
+                    {
+                        policy
+                            .WithOrigins("http://localhost:4200", "https://localhost:4200") // Angular
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
+            #endregion
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -79,6 +93,8 @@ namespace EbraheemSudanCenter
                 await dataSeeding.SeedAllAsync();
             }
             #endregion
+
+            app.UseCors("AllowAngularClient");
 
             app.MapControllers();
 
